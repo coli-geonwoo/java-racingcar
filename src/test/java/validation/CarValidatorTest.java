@@ -1,16 +1,14 @@
 package validation;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ValidatorTest {
+import java.util.ArrayList;
+import java.util.List;
 
-    //TODO 테스트코드와 내용 유추하기
+import static org.junit.jupiter.api.Assertions.*;
+
+class CarValidatorTest {
     @Test
     @DisplayName("차 이름 테스트: 정상 입력")
     void validateCarNames_validInputs() {
@@ -18,7 +16,7 @@ class ValidatorTest {
         List<String> names = new ArrayList<>(List.of("A", "bb", "cCc", "DdddD"));
 
         // when - then
-        assertDoesNotThrow(() -> Validator.validateCarNames(names));
+        assertDoesNotThrow(() -> CarValidator.validateCarNames(names));
     }
 
     @Test
@@ -32,13 +30,13 @@ class ValidatorTest {
 
         // when - then
         assertThrows(IllegalArgumentException.class,
-            () -> Validator.validateCarNames(nameTooLong));
+                () -> CarValidator.validateCarNames(nameTooLong));
         assertThrows(IllegalArgumentException.class,
-            () -> Validator.validateCarNames(nameBlank));
+                () -> CarValidator.validateCarNames(nameBlank));
         assertThrows(IllegalArgumentException.class,
-            () -> Validator.validateCarNames(nameWithIllegalLetter));
+                () -> CarValidator.validateCarNames(nameWithIllegalLetter));
         assertThrows(IllegalArgumentException.class,
-            () -> Validator.validateCarNames(nameWithDuplication));
+                () -> CarValidator.validateCarNames(nameWithDuplication));
     }
 
     @Test
@@ -57,31 +55,7 @@ class ValidatorTest {
 
         // when - then
         assertThrows(IllegalArgumentException.class,
-            () -> Validator.validateCarNames(nameTooManyCars));
+                () -> CarValidator.validateCarNames(nameTooManyCars));
     }
 
-    @Test
-    @DisplayName("라운드 테스트 : 정상입력")
-    void validateRound_validateInputs() {
-        // given
-        int[] validateInputs = {1, 2, 50, 99, 100};
-
-        // when - then
-        for (int validateInput : validateInputs) {
-            assertDoesNotThrow(() -> Validator.validateRound(validateInput));
-        }
-    }
-
-    @Test
-    @DisplayName("라운드 테스트 : 예외입력")
-    void validateRound_invalidateInputs() {
-        // given
-        int[] invalidateInputs = {0, -1, 101, 102};
-
-        // when - then
-        for (int invalidateInput : invalidateInputs) {
-            assertThrows(IllegalArgumentException.class,
-                () -> Validator.validateRound(invalidateInput));
-        }
-    }
 }
