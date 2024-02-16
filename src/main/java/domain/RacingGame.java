@@ -7,16 +7,15 @@ public class RacingGame {
     private static final int RANDOM_NUMBER_RANGE = 10;
     private static final int MOVE_BOUNDARY_NUMBER = 4;
 
-    public static List<Car> getWinners(List<Car> cars) {
+    public static List<String> getWinnerNames(List<Car> cars) {
 
         Collections.sort(cars);
         Car maxScoreCar = cars.get(0);
 
-        List<Car> winners = cars.stream()
+        return cars.stream()
                 .filter(car -> car.compareTo(maxScoreCar) == 0)
+                .map(Car::getName)
                 .toList();
-
-        return winners;
     }
 
     public static void playOneRound(List<Car> cars) {

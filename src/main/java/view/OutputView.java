@@ -21,7 +21,7 @@ public class OutputView {
 
     public static void printScore(List<Car> carList) {
         for (Car car : carList) {
-            System.out.println(car.getName() + " : " + "-".repeat(car.getScore()));
+            System.out.println(car);
         }
         System.out.println();
     }

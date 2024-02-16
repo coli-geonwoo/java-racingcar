@@ -14,19 +14,16 @@ public class Car implements Comparable<Car> {
         return name;
     }
 
-    public int getScore() {
-        return score;
-    }
-
     public void move() {
         this.score++;
     }
 
-
+    @Override
+    public String toString(){
+        return this.name + " : " + "-".repeat(this.score);
+    }
     @Override
     public int compareTo(Car o) {
-        if (this.score == o.score) return 0;
-        if (this.score < o.score) return 1;
-        return -1;
+        return Integer.compare(o.score, this.score);
     }
 }
