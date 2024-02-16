@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class ServiceTest {
+class RacingGameTest {
 
     @Test
     @DisplayName("우승자 판별 테스트")
@@ -28,6 +28,6 @@ class ServiceTest {
         cars.add(carC);
 
         // then
-        assertEquals(new ArrayList<>(List.of("carB", "carC")), Service.getWinnerNames(cars));
+        assertEquals(new ArrayList<>(List.of("carB", "carC")), RacingGame.getWinnerNames(cars));
     }
 }
