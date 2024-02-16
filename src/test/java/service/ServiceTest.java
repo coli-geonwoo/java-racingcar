@@ -29,6 +29,7 @@ class ServiceTest {
         cars.add(carC);
 
         // then
+        //TODO POSIX new Line 학습하기
         assertEquals(new ArrayList<>(List.of("carB", "carC")), Service.getWinnerNames(cars));
     }
 }

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
 
+    //TODO 테스트코드와 내용 유추하기
     @Test
     @DisplayName("차 이름 테스트: 정상 입력")
     void validateCarNames_validInputs() {
