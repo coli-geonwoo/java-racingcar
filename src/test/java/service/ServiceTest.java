@@ -29,6 +29,5 @@ class ServiceTest {
 
         // then
         assertEquals(new ArrayList<>(List.of("carB", "carC")), Service.getWinnerNames(cars));
-
     }
 }
