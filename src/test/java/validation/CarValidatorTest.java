@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static constant.Numbers.MAX_CAR_LENGTH;
-import static constant.Numbers.MIN_CAR_LENGTH;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CarValidatorTest {
     @Test
@@ -48,12 +47,12 @@ class CarValidatorTest {
         List<String> validCarNums = new ArrayList<>();
 
         // 정상범위(1-100)안의 차량 대수생성
-        for (int i = MIN_CAR_LENGTH; i <= MAX_CAR_LENGTH; i++) {
+        for (int i = 1; i <= 100; i++) {
             validCarNums.add(String.valueOf(i));
             assertThrows(IllegalArgumentException.class,
                     () -> CarValidator.validateCarNames(validCarNums));
-            }
         }
+    }
 
 
     @Test
@@ -66,7 +65,7 @@ class CarValidatorTest {
 
         // 예외범위의 차량 대수생성
         List<String> zeroCar = new ArrayList<>();
-        for (int i = MIN_CAR_LENGTH; i <= MAX_CAR_LENGTH+2; i++) {
+        for (int i = 1; i <= 100 + 2; i++) {
             exceedCarNums.add(String.valueOf(i));
         }
 
