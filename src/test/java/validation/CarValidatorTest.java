@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static constant.Numbers.MAX_CAR_LENGTH;
+import static constant.Numbers.MIN_CAR_LENGTH;
 import static org.junit.jupiter.api.Assertions.*;
 
 class CarValidatorTest {
@@ -40,22 +42,37 @@ class CarValidatorTest {
     }
 
     @Test
-    @DisplayName("차 이름 테스트: 예외 입력(2) - 차가 100대 넘는 경우")
-    void validateCarNames_invalidInputs_tooManyCars() {
+    @DisplayName("차 대수 테스트 : 정상 범위의 차량 대수가 입력")
+    void validateCarNums_validInputs() {
         // given
-        List<String> nameTooManyCars = new ArrayList<>();
+        List<String> validCarNums = new ArrayList<>();
 
-        // 테스트 케이스 생성 - [ "A", "AA", "AAA", ... ]
-        for (int i = 65; i <= 90; i++) {
-            String alphabet = Character.toString((char) i);
-            for (int j = 1; j <= 5; j++) {
-                nameTooManyCars.add(alphabet.repeat(j));
+        // 정상범위(1-100)안의 차량 대수생성
+        for (int i = MIN_CAR_LENGTH; i <= MAX_CAR_LENGTH; i++) {
+            validCarNums.add(String.valueOf(i));
+            assertThrows(IllegalArgumentException.class,
+                    () -> CarValidator.validateCarNames(validCarNums));
             }
         }
 
-        // when - then
-        assertThrows(IllegalArgumentException.class,
-                () -> CarValidator.validateCarNames(nameTooManyCars));
-    }
 
+    @Test
+    @DisplayName("차 대수 : 예외 입력 - 예외 범위의 차량 대수가 입력")
+    void validateCarNums_invalidInputs() {
+
+        // given
+        List<String> exceedCarNums = new ArrayList<>();
+
+
+        // 예외범위의 차량 대수생성
+        List<String> zeroCar = new ArrayList<>();
+        for (int i = MIN_CAR_LENGTH; i <= MAX_CAR_LENGTH+2; i++) {
+            exceedCarNums.add(String.valueOf(i));
+        }
+
+        assertThrows(IllegalArgumentException.class,
+                () -> CarValidator.validateCarNames(zeroCar));
+        assertThrows(IllegalArgumentException.class,
+                () -> CarValidator.validateCarNames(exceedCarNums));
+    }
 }
