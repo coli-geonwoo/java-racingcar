@@ -1,27 +1,22 @@
 package domain;
 
-import domain.Car;
-
+import java.util.Collections;
 import java.util.List;
 
 public class RacingGame {
     private static final int RANDOM_NUMBER_RANGE = 10;
     private static final int MOVE_BOUNDARY_NUMBER = 4;
 
-    public static List<String> getWinnerNames(List<Car> cars) {
-        // TODO getter를 사용하지 않고 비교방식을 생각해보기
-        // TODO 예외에 메시지를 담기
-        int maxScore = cars.stream()
-                .mapToInt(Car::getScore)
-                .max()
-                .orElseThrow(RuntimeException::new);
+    public static List<Car> getWinners(List<Car> cars) {
 
-        List<String> winnerNames = cars.stream()
-                .filter(car -> car.getScore() == maxScore)
-                .map(Car::getName)
+        Collections.sort(cars);
+        Car maxScoreCar = cars.get(0);
+
+        List<Car> winners = cars.stream()
+                .filter(car -> car.compareTo(maxScoreCar) == 0)
                 .toList();
 
-        return winnerNames;
+        return winners;
     }
 
     public static void playOneRound(List<Car> cars) {
