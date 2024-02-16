@@ -3,7 +3,7 @@ package controller;
 import conversion.Converter;
 import domain.Car;
 import java.util.List;
-import service.RacingGame;
+import domain.RacingGame;
 import view.InputView;
 import view.IterativeReader;
 import view.OutputView;
